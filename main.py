@@ -1,6 +1,6 @@
-from selenium import webdriver
 import time
 import os
+from selenium import webdriver
 
 options = webdriver.ChromeOptions()
 
@@ -8,14 +8,19 @@ options = webdriver.ChromeOptions()
 options.add_argument("log-level=3")
 user_data_dir = os.path.abspath("selenium_data")
 options.add_argument(f"user-data-dir={user_data_dir}")
-driver = webdriver.Chrome(options=options, executable_path='chromedriver.exe')
+driver = webdriver.Chrome(options=options, executable_path="chromedriver.exe")
+time.sleep(1)  # Waits for chrome to finish initializing
 
-captcha_xpath = '//*[@id="checkcapchamodelyii-captcha-image"]' 
-time.sleep(1)
+
+url_list = [
+	"https://gomovies-online.cam/watch-film/hotel-transylvania-transformania/CCdjX5V7/LZupB3PP-online-for-free.html".
+	"https://gomovies-online.cam/watch-film/encanto/dsHoOcry/NBiEkI2Y-online-for-free.html",
+	"https://gomovies-online.cam/watch-film/the-matrix-resurrections/sBRaSOyh/6vX83o4Q-online-for-free.html",
+]
+
+captcha_xpath = "//*[@id=\"checkcapchamodelyii-captcha-image\"]"
 for i in range(3):
-	for j in range(3):
-		driver.get("https://gomovies-online.cam/watch-film/encanto/dsHoOcry/NBiEkI2Y-online-for-free.html")
-		driver.get("https://gomovies-online.cam/watch-film/hotel-transylvania-transformania/CCdjX5V7/LZupB3PP-online-for-free.html")
+	for url in url_list:
+		driver.get(url)
 	time.sleep(2)
 	element = driver.find_element_by_xpath(captcha_xpath).screenshot(f"captcha{i}.png");
-
