@@ -13,7 +13,7 @@ time.sleep(1)  # Waits for chrome to finish initializing
 
 
 url_list = [
-	"https://gomovies-online.cam/watch-film/hotel-transylvania-transformania/CCdjX5V7/LZupB3PP-online-for-free.html".
+	"https://gomovies-online.cam/watch-film/hotel-transylvania-transformania/CCdjX5V7/LZupB3PP-online-for-free.html",
 	"https://gomovies-online.cam/watch-film/encanto/dsHoOcry/NBiEkI2Y-online-for-free.html",
 	"https://gomovies-online.cam/watch-film/the-matrix-resurrections/sBRaSOyh/6vX83o4Q-online-for-free.html",
 ]
