@@ -1,6 +1,11 @@
 import time
 import os
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import *
+
 
 options = webdriver.ChromeOptions()
 
@@ -21,11 +26,32 @@ url_list = [
 	"https://gomovies-online.cam/watch-film/ghostbusters-afterlife/zYO1mqp7/TRmyHHI0-online-for-free.html",
 ]
 
+def wait_until_element(stratagy, locator, timeout=10):
+	wait = WebDriverWait(driver, timeout)
+	element = wait.until(
+		EC.presence_of_element_located(
+			(
+				stratagy, locator
+			)
+		)
+	)
+
+	return element
+
+def screenshot_captcha():
+	try:
+		wait_until_element(By.XPATH, captcha_xpath)
+		# time.sleep(0.1)
+		driver.find_element_by_xpath(captcha_xpath).screenshot(f"captchas/captcha{i+1}.png")
+		driver.delete_cookie("advanced-frontendgomovies7")
+		driver.refresh()
+	except WebDriverException:
+		screenshot_captcha()
+
+
+
 for url in url_list:
 		driver.get(url)
 
-for i in range(3):
-	time.sleep(2)
-	element = driver.find_element_by_xpath(captcha_xpath).screenshot(f"captcha{i}.png")
-	driver.delete_cookie("advanced-frontendgomovies7")
-	driver.refresh()
+for i in range(30):
+	screenshot_captcha()
