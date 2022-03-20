@@ -53,5 +53,5 @@ def screenshot_captcha():
 for url in url_list:
 		driver.get(url)
 
-for i in range(30):
+for i in range(2000):
 	screenshot_captcha()
